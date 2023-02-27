@@ -31,7 +31,7 @@ log:
   dir: "logs"
   #日志分割尺寸-单位KB,MB,GB
   #Log rotation size - unit: KB, MB, GB
-  log_temp_size: "1KB"
+  log_temp_size: "100MB"
   #日志滚动保留-保留全部: All,按时间保留(秒): KeepTime(i64),按版本保留: KeepNum(i64)
   #Log rolling retention - keep all: All, keep by time (in seconds): KeepTime(i64), keep by version: KeepNum(i64)
   log_rolling_type: "KeepNum(20)"
