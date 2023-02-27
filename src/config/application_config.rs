@@ -1,6 +1,7 @@
 use getset::{Getters, Setters};
+use once_cell::sync::Lazy;
 
-use config::domain::{AppConfig, CacheConfig, DatabaseConfig, LogConfig, LoginConfig};
+use crate::config::domain::*;
 
 /// Config
 #[derive(Getters, Setters, Debug, PartialEq, Serialize, Deserialize)]
@@ -35,3 +36,5 @@ impl Default for ApplicationConfig {
         result
     }
 }
+
+pub static APPLICATION_CONFIG: Lazy<ApplicationConfig> = Lazy::new(|| ApplicationConfig::default());

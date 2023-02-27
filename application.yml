@@ -40,7 +40,7 @@ log:
   log_level: "info"
   #日志通道长度，null为无界队列，非null为有界队列（性能好）
   #Log channel length, null for unbounded queue, non-null for bounded queue (better performance)
-  log_chan_len: 100000
+  log_chan_len: 1
 
 cache:
   #redis or mem

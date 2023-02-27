@@ -1,7 +1,7 @@
 use getset::{Getters, Setters};
 use once_cell::sync::Lazy;
 
-use config::application_config::ApplicationConfig;
+use crate::config::application_config::ApplicationConfig;
 
 #[derive(Getters, Setters)]
 pub struct ServerContext {
