@@ -4,7 +4,7 @@ use fast_log::config::Config;
 use fast_log::consts::LogSize;
 use fast_log::plugin::file_split::{FileSplitAppender, RollingType};
 
-use context::CONTEXT;
+use crate::context::CONTEXT;
 
 pub fn init_log() {
     let log_config = &CONTEXT.config().log();

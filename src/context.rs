@@ -21,7 +21,13 @@ pub struct ServerContext {
 
 impl Default for ServerContext {
     fn default() -> Self {
+        //TODO 启动代码
         let config = ApplicationConfig::default();
+        println!("[{}] config read finish, log init", config.app().name());
+        //日志初始化
+        crate::config::log::init_log();
+        log::error!("log init finish1, app booting");
+
         ServerContext {
             // rb: crate::domain::init_rbatis(&config),
             // cache_service: CacheService::new(&config).unwrap(),

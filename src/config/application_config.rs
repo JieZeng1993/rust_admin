@@ -1,5 +1,4 @@
 use getset::{Getters, Setters};
-use once_cell::sync::Lazy;
 
 use crate::config::domain::*;
 
@@ -36,5 +35,3 @@ impl Default for ApplicationConfig {
         result
     }
 }
-
-pub static APPLICATION_CONFIG: Lazy<ApplicationConfig> = Lazy::new(|| ApplicationConfig::default());
