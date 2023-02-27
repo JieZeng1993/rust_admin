@@ -17,3 +17,7 @@ getset = "*"
 
 #lazy
 once_cell = "*"
+#log
+log = "*"
+#logger
+fast_log = { version = "*" }

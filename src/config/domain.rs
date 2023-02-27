@@ -8,6 +8,8 @@ pub struct AppConfig {
     #[getset(get = "pub", set = "pub")]
     name: String,
     #[getset(get = "pub", set = "pub")]
+    uk: String,
+    #[getset(get = "pub", set = "pub")]
     debug: bool,
 }
 
@@ -44,7 +46,7 @@ pub struct LogConfig {
     #[getset(get = "pub", set = "pub")]
     log_level: String,
     #[getset(get = "pub", set = "pub")]
-    log_chan_len: u32,
+    log_chan_len: usize,
 }
 
 #[derive(Getters, Setters, Debug, PartialEq, Serialize, Deserialize)]
