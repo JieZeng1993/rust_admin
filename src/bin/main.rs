@@ -13,5 +13,6 @@ fn main() {
     //初始化Context
     log::info!("[{}] app {:?}",APPLICATION_CONFIG.app().name(),CONTEXT.state());
 
+
     log::info!("Hello, world!");
 }

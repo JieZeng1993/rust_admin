@@ -13,6 +13,8 @@ serde_json = "*"
 serde_yaml = "*"
 time = { version = "*", features = ["local-offset", "serde-human-readable"] }
 
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
 getset = "*"
 
 #lazy
@@ -24,3 +26,6 @@ fast_log = { version = "*" }
 
 #trait支持异步
 async-trait = "*"
+
+#redisc客户端
+redis = { version = "*", features = ["tokio-comp", "tokio-native-tls-comp"] }
