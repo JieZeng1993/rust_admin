@@ -1,4 +1,5 @@
 use getset::{Getters, Setters};
+use once_cell::sync::Lazy;
 
 use crate::config::domain::*;
 
@@ -17,7 +18,7 @@ pub struct ApplicationConfig {
     cache: CacheConfig,
 }
 
-impl Default for ApplicationConfig {
+impl ApplicationConfig {
     fn default() -> Self {
         let yml_data = include_str!("../../application.yml");
         //load config
@@ -35,3 +36,5 @@ impl Default for ApplicationConfig {
         result
     }
 }
+
+pub static APPLICATION_CONFIG: Lazy<ApplicationConfig> = Lazy::new(|| ApplicationConfig::default());

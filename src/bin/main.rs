@@ -1,15 +1,17 @@
 extern crate rust_admin;
 
+use rust_admin::config::application_config::APPLICATION_CONFIG;
 use rust_admin::context::CONTEXT;
 
 fn main() {
-    log::info!("[{}]app booted",CONTEXT.config().app().name());
-    log::error!("log init finish2, app booting");
-    log::error!("log init finish3, app booting");
-    log::error!("log init finish4, app booting");
-    log::error!("log init finish5, app booting");
-    log::error!("log init finish6, app booting");
-    log::error!("log init finish7, app booting");
+    //加载配置
+    println!("[{}] config read finish, log init", APPLICATION_CONFIG.app().name());
+    //日志初始化
+    rust_admin::config::log::init_log();
+    log::error!("log init finish, app booting");
 
-    println!("Hello, world!");
+    //初始化Context
+    log::info!("[{}] app {:?}",APPLICATION_CONFIG.app().name(),CONTEXT.state());
+
+    log::info!("Hello, world!");
 }

@@ -3,12 +3,12 @@ use std::time::Duration;
 use fast_log::config::Config;
 use fast_log::consts::LogSize;
 use fast_log::plugin::file_split::{FileSplitAppender, RollingType};
+use crate::config::application_config::APPLICATION_CONFIG;
 
-use crate::context::CONTEXT;
 
 pub fn init_log() {
-    let log_config = &CONTEXT.config().log();
-    let app_config = &CONTEXT.config().app();
+    let log_config = &APPLICATION_CONFIG.log();
+    let app_config = &APPLICATION_CONFIG.app();
     //create log dir
     let _ = std::fs::create_dir_all(format!("{}/{}", log_config.dir(), app_config.uk()));
     //init fast log

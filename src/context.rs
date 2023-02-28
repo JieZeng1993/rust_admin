@@ -3,10 +3,18 @@ use once_cell::sync::Lazy;
 
 use crate::config::application_config::ApplicationConfig;
 
+#[derive(Debug)]
+pub enum ServerState {
+    Booting,
+    Booted,
+    Shutting,
+    Shutdown,
+}
+
 #[derive(Getters, Setters)]
 pub struct ServerContext {
     #[getset(get = "pub", set = "pub")]
-    config: ApplicationConfig,
+    state: ServerState,
     // pub rb: Rbatis,
     // pub cache_service: CacheService,
     // pub sys_res_service: SysResService,
@@ -20,15 +28,10 @@ pub struct ServerContext {
 }
 
 impl Default for ServerContext {
+    //init
     fn default() -> Self {
-        //TODO 启动代码
-        let config = ApplicationConfig::default();
-        println!("[{}] config read finish, log init", config.app().name());
-        //日志初始化
-        crate::config::log::init_log();
-        log::error!("log init finish1, app booting");
-
         ServerContext {
+            state: ServerState::Booting
             // rb: crate::domain::init_rbatis(&config),
             // cache_service: CacheService::new(&config).unwrap(),
             // sys_res_service: SysResService {},
@@ -39,7 +42,6 @@ impl Default for ServerContext {
             // sys_dict_service: SysDictService {},
             // sys_auth_service: SysAuthService {},
             // sys_trash_service: SysTrashService {},
-            config,
         }
     }
 }
