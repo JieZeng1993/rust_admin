@@ -6,11 +6,15 @@ extern crate serde;
 extern crate serde_derive;
 // extern crate chrono;
 extern crate time;
-
+#[macro_use]
+extern crate rbatis;
 extern crate tokio;
 
 pub mod config;
 pub mod context;
 pub mod service;
 pub mod error;
-mod domain;
+pub mod domain;
+pub mod rest;
+mod mapper;
+pub mod tables;

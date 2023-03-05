@@ -1,1 +1,1 @@
-mod vo;
+pub mod vo;

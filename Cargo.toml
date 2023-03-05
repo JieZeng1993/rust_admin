@@ -29,3 +29,12 @@ async-trait = "*"
 
 #redisc客户端
 redis = { version = "*", features = ["tokio-comp", "tokio-native-tls-comp"] }
+
+#web
+poem = { version = "*", features = ["opentelemetry", "prometheus", "websocket"] }
+poem-openapi = { version = "*", features = ["swagger-ui", "email", "chrono"] }
+
+#db orm
+rbs = { version = "0.1"}
+rbatis = { version = "*", features = [] }
+rbdc-mysql = { version = "*" }
