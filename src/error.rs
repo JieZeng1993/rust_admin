@@ -60,11 +60,11 @@ impl From<AppError> for io::Error {
     }
 }
 
-// impl From<rbatis::Error> for AppError {
-//     fn from(arg: rbatis::Error) -> Self {
-//         AppError::E(arg.to_string())
-//     }
-// }
+impl From<rbatis::Error> for AppError {
+    fn from(arg: rbatis::Error) -> Self {
+        AppError::E(arg.to_string())
+    }
+}
 
 // impl From<actix_web::error::Error> for AppError {
 //     fn from(arg: actix_web::error::Error) -> Self {

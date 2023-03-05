@@ -1,5 +1,6 @@
 use getset::{Getters, Setters};
 use once_cell::sync::Lazy;
+use rbatis::Rbatis;
 
 use crate::config::application_config::APPLICATION_CONFIG;
 use crate::service::cache_service::CacheService;
@@ -16,7 +17,8 @@ pub enum ServerState {
 pub struct ServerContext {
     #[getset(get = "pub", set = "pub")]
     state: ServerState,
-    // pub rb: Rbatis,
+    #[getset(get = "pub", set = "pub")]
+    rb: Rbatis,
     #[getset(get = "pub")]
     cache_service: CacheService,
     // pub sys_res_service: SysResService,
@@ -35,6 +37,7 @@ impl Default for ServerContext {
         ServerContext {
             state: ServerState::Booting,
             // rb: crate::domain::init_rbatis(&config),
+            rb: Default::default(),
             cache_service: CacheService::new(APPLICATION_CONFIG.cache()).unwrap(),
             // sys_res_service: SysResService {},
             // sys_user_service: SysUserService {},

@@ -18,3 +18,4 @@ pub mod domain;
 pub mod rest;
 mod mapper;
 pub mod tables;
+pub mod util;
