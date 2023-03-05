@@ -32,9 +32,12 @@ redis = { version = "*", features = ["tokio-comp", "tokio-native-tls-comp"] }
 
 #web
 poem = { version = "*", features = ["opentelemetry", "prometheus", "websocket"] }
-poem-openapi = { version = "*", features = ["swagger-ui", "email", "chrono"] }
+poem-openapi = { version = "*", features = ["swagger-ui", "email", "time"] }
 
 #db orm
 rbs = { version = "0.1"}
 rbatis = { version = "*", features = [] }
 rbdc-mysql = { version = "*" }
+
+
+md5 = "*"

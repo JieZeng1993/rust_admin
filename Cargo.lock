@@ -1095,6 +1095,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "md5"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "490cc448043f947bae3cbee9c203358d62dbee0db12107a74be5c30ccfd09771"
+
+[[package]]
 name = "memchr"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1584,7 +1590,6 @@ checksum = "1077defedfd8ff15990bb42993970ac75bc46dd8a5b3c0b452ab4e2041b825a4"
 dependencies = [
  "base64 0.21.0",
  "bytes",
- "chrono",
  "derive_more",
  "email_address",
  "futures-util",
@@ -1599,6 +1604,7 @@ dependencies = [
  "serde_urlencoded",
  "serde_yaml",
  "thiserror",
+ "time",
  "tokio",
 ]
 
@@ -2006,6 +2012,7 @@ dependencies = [
  "fast_log",
  "getset",
  "log",
+ "md5",
  "once_cell",
  "poem",
  "poem-openapi",

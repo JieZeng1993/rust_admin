@@ -5,7 +5,7 @@ use poem::listener::TcpListener;
 use poem_openapi::OpenApiService;
 
 use rust_admin::config::application_config::APPLICATION_CONFIG;
-use rust_admin::context::CONTEXT;
+use rust_admin::context::{CONTEXT, ServerContext};
 use rust_admin::rest::sys_user_rest::SysUserRest;
 
 #[tokio::main]
@@ -19,11 +19,15 @@ async fn main() -> Result<(), std::io::Error> {
     //初始化Context
     log::info!("[{}] app {:?}",APPLICATION_CONFIG.app().name(),CONTEXT.state());
 
+    CONTEXT.init_pool(APPLICATION_CONFIG.database()).await;
+
     let api = OpenApiService::new((SysUserRest), "api", "1.1")
         .server("http://localhost:3001/api");
     let swagger_ui = api.swagger_ui();
 
     // let tracer = init_tracer();
+
+    log::info!("[{}] app start listen",APPLICATION_CONFIG.app().name());
 
     Server::new(TcpListener::bind("127.0.0.1:3001"))
         .run(

@@ -1,4 +1,5 @@
 use poem_openapi::{OpenApi, payload::Json, Tags};
+use crate::context::CONTEXT;
 
 use crate::domain::vo::RespVO;
 use crate::domain::vo::user::{UserAddDTO, UserUpdateDTO};
@@ -33,21 +34,7 @@ impl SysUserRest {
     /// 新增
     #[oai(path = "/user/add", method = "post", tag = "ApiTags::User")]
     async fn add(&self, add_dto: Json<UserAddDTO>) -> CommonResponse<String> {
-        // let user = CONTEXT
-        //     .user_service
-        //     .login(
-        //         login_dto.name.as_ref().unwrap(),
-        //         login_dto.password.as_ref().unwrap(),
-        //     )
-        //     .await;
-        // match user {
-        //     Ok(data) =>  {
-        //         CommonResponse::Ok(Json(RespVO::from(data)))
-        //     },
-        //     Err(err) => {
-        //         CommonResponse::Ok(Json(RespVO::from_error_code(err)))
-        //     }
-        // }
+        CONTEXT.sys_user_service().add(add_dto.0).await.unwrap();
         CommonResponse::Ok(Json(RespVO::from("ADD".to_string())))
     }
 
