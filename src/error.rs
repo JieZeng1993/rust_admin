@@ -42,19 +42,19 @@ impl From<&str> for AppError {
     }
 }
 
-impl From<std::string::String> for AppError {
+impl From<String> for AppError {
     fn from(arg: String) -> Self {
         return AppError::E(arg);
     }
 }
 
-impl From<&dyn std::error::Error> for AppError {
-    fn from(arg: &dyn std::error::Error) -> Self {
+impl From<&dyn Error> for AppError {
+    fn from(arg: &dyn Error) -> Self {
         return AppError::E(arg.to_string());
     }
 }
 
-impl From<AppError> for std::io::Error {
+impl From<AppError> for io::Error {
     fn from(arg: AppError) -> Self {
         arg.into()
     }
@@ -103,14 +103,14 @@ impl<'de> Visitor<'de> for ErrorVisitor {
 
     fn visit_string<E>(self, v: String) -> Result<Self::Value, E>
     where
-        E: std::error::Error,
+        E: Error,
     {
         Ok(v)
     }
 
     fn visit_str<E>(self, v: &str) -> Result<Self::Value, E>
     where
-        E: std::error::Error,
+        E: Error,
     {
         Ok(v.to_string())
     }

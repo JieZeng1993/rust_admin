@@ -13,3 +13,4 @@ pub mod config;
 pub mod context;
 pub mod service;
 pub mod error;
+mod domain;
