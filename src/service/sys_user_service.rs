@@ -1,4 +1,4 @@
-use crate::domain::vo::user::UserAddDTO;
+use crate::domain::dto::user::UserAddDTO;
 use crate::error::{AppError, AppResult};
 use crate::pool;
 use crate::tables::SysUser;

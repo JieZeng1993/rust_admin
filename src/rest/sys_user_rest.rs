@@ -1,8 +1,8 @@
 use poem_openapi::{OpenApi, payload::Json, Tags};
 use crate::context::CONTEXT;
+use crate::domain::dto::user::{UserAddDTO, UserUpdateDTO};
 
 use crate::domain::vo::RespVO;
-use crate::domain::vo::user::{UserAddDTO, UserUpdateDTO};
 use crate::rest::ApiTags;
 use crate::rest::CommonResponse;
 

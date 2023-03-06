@@ -6,6 +6,9 @@ use std::io;
 use serde::de::Visitor;
 use serde::ser::{Serialize, Serializer};
 use serde::{Deserialize, Deserializer};
+use time::macros::time;
+use crate::error;
+use crate::util::time_util;
 
 pub type AppResult<T> = Result<T, AppError>;
 
@@ -62,6 +65,12 @@ impl From<AppError> for io::Error {
 
 impl From<rbatis::Error> for AppError {
     fn from(arg: rbatis::Error) -> Self {
+        AppError::E(arg.to_string())
+    }
+}
+
+impl From<time::error::IndeterminateOffset> for AppError {
+    fn from(arg: time::error::IndeterminateOffset) -> Self {
         AppError::E(arg.to_string())
     }
 }
