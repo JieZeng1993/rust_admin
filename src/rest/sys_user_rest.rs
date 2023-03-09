@@ -1,4 +1,6 @@
+use log::{info, log};
 use poem_openapi::{OpenApi, payload::Json, Tags};
+use crate::config::session_context;
 use crate::context::CONTEXT;
 use crate::domain::dto::user::{UserAddDTO, UserUpdateDTO};
 
@@ -34,6 +36,8 @@ impl SysUserRest {
     /// 新增
     #[oai(path = "/user/add", method = "post", tag = "ApiTags::User")]
     async fn add(&self, add_dto: Json<UserAddDTO>) -> CommonResponse<String> {
+        let session = session_context::get_session();
+        info!("session:{:?}",&session);
         CONTEXT.sys_user_service().add(add_dto.0).await.unwrap();
         CommonResponse::Ok(Json(RespVO::from("ADD".to_string())))
     }

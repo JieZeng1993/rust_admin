@@ -1,10 +1,12 @@
 extern crate rust_admin;
 
-use poem::{EndpointExt, Route, Server};
+use poem::{Endpoint, EndpointExt, Route, Server};
 use poem::listener::TcpListener;
 use poem_openapi::OpenApiService;
 
 use rust_admin::config::application_config::APPLICATION_CONFIG;
+use rust_admin::config::session_context;
+use rust_admin::config::session_context::{Session, SESSION_CONTEXT};
 use rust_admin::context::{CONTEXT, ServerContext};
 use rust_admin::rest::sys_user_rest::SysUserRest;
 
@@ -29,12 +31,37 @@ async fn main() -> Result<(), std::io::Error> {
 
     log::info!("[{}] app start listen",APPLICATION_CONFIG.app().name());
 
+    // SESSION_CONTEXT.scope(1, async move{
+    //     let session =  SESSION_CONTEXT.get();
+    //     return session;
+    // }).await?;
+
+
     Server::new(TcpListener::bind("127.0.0.1:3001"))
         .run(
             Route::new()
                 .nest("/api", api)
                 // .at("/ws/:name", get(ws.data(tokio::sync::broadcast::channel::<String>(32).0)))
                 .nest("/swagger_ui", swagger_ui)
+                .around(|ep,req| async move{
+
+                    let v = Some(Session{
+                        id: Some(1),
+                        name: "曾杰".to_string(),
+                    });
+
+                    let resp;
+
+                    if v.is_some(){
+                        resp = SESSION_CONTEXT.scope(v.unwrap(), async move{
+                            ep.get_response(req).await
+                        }).await;
+                    }else {
+                        resp = ep.get_response(req).await;
+                    }
+
+                    Ok(resp)
+                })
             // .with(HeaderAuth::new()),
             // .data(tracer.clone())
             // .with(OpenTelemetryMetrics::new())
